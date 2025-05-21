@@ -10,7 +10,7 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
 
 # 4. Playwright browsers уже установлены в базовом образе, но на всякий случай:
-RUN playwright install --with-deps chromium
+RUN playwright install --with-deps
 
 # 5. Открываем порт (для Render и Railway не обязательно, но не мешает)
 EXPOSE 8000
