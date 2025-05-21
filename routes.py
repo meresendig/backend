@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from gpt_client import ChatGPTClient
-from fastapi.responses import JSONResponse
 
 router = APIRouter()
 gpt = ChatGPTClient("auth.json")
@@ -15,5 +15,4 @@ async def ask_gpt(req: GPTRequest):
         result = await gpt.send_prompt(req.prompt)
         return {"answer": result}
     except Exception as e:
-        # Возвращаем ошибку тоже как JSON
         return JSONResponse(content={"error": str(e)}, status_code=500)
